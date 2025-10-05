@@ -1,2 +1,6 @@
 pnpm typecheck
-pnpm test
+
+# Only run tests if test files exist
+if find . -type f -name "*.test.ts" -o -name "*.test.tsx" -o -name "*.spec.ts" -o -name "*.spec.tsx" | grep -q .; then
+  pnpm vitest run
+fi
