@@ -2,16 +2,17 @@
 pnpm typecheck
 
 # Run vitest in run mode
-OUTPUT=$(pnpm vitest run 2>&1)
-EXIT_CODE=$?
+pnpm vitest run 2>&1 | tee /tmp/vitest_output
+EXIT_CODE=${PIPESTATUS[0]}
 
 # If exit code is non-zero but the output contains "No test files found", treat as success
 if [ $EXIT_CODE -ne 0 ]; then
-  if echo "$OUTPUT" | grep -q "No test files found"; then
+  if grep -q "No test files found" /tmp/vitest_output; then
     exit 0
   else
     # Real test failure
-    echo "$OUTPUT"
+    cat /tmp/vitest_output
     exit $EXIT_CODE
   fi
 fi
+rm -f /tmp/vitest_output
