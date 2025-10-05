@@ -1,6 +1,12 @@
+# Run typechecking
 pnpm typecheck
 
-# Only run tests if test files exist
-if find . -type f -name "*.test.ts" -o -name "*.test.tsx" -o -name "*.spec.ts" -o -name "*.spec.tsx" | grep -q .; then
-  pnpm vitest run
+# Run vitest in run mode and check exit code
+pnpm vitest run
+EXIT_CODE=$?
+
+# Exit code 1 with "No test files found" message is OK
+# Any other non-zero exit code means tests actually failed
+if [ $EXIT_CODE -ne 0 ] && ! pnpm vitest run 2>&1 | grep -q "No test files found"; then
+  exit $EXIT_CODE
 fi
