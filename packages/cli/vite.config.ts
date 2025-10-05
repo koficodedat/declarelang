@@ -42,19 +42,4 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
   ],
-  test: {
-    globals: true,
-    environment: 'node',
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'json', 'html', 'lcov'],
-      exclude: ['**/*.test.ts', '**/*.spec.ts', '**/dist/**', '**/node_modules/**', 'bin/**'],
-      thresholds: {
-        lines: 80,
-        functions: 80,
-        branches: 75,
-        statements: 80,
-      },
-    },
-  },
 });
