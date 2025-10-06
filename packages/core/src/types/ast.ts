@@ -934,3 +934,46 @@ export interface LOGFile extends BaseNode {
   levels: LogLevelDefinition[];
   exclude?: ExcludeDefinition;
 }
+
+/**
+ * SECURITY.DSL Types
+ */
+
+export interface ConstraintRule extends BaseNode {
+  description: string; // Full constraint statement
+  subject?: string; // e.g., "password fields", "queries", "timestamps"
+  requirement?: string; // e.g., "be hashed with bcrypt", "use parameterized statements"
+  targetModels?: string[]; // For "soft deletes for Posts and Comments"
+}
+
+export interface EnforceRule extends BaseNode {
+  description: string; // Full enforcement statement
+  prohibition?: string; // e.g., "no raw SQL", "no eval"
+  requirement?: string; // e.g., "JWT tokens must expire", "CORS must be configured"
+}
+
+export interface PasswordRule extends BaseNode {
+  description: string; // Full password rule statement
+  field: string; // e.g., "password", "password reset tokens"
+  requirement: string; // e.g., "must not be logged", "must expire within 1 hour"
+}
+
+export interface DataProtectionRule extends BaseNode {
+  description: string; // Full protection statement
+  subject: string; // e.g., "user email", "user data", "session tokens"
+  requirement: string; // e.g., "must be unique and validated"
+}
+
+export interface APISecurityRule extends BaseNode {
+  description: string; // Full API security statement
+  scope: string; // e.g., "all endpoints", "all responses", "all file uploads"
+  requirement: string; // e.g., "must validate content type"
+}
+
+export interface SECURITYFile extends BaseNode {
+  constraints: ConstraintRule[];
+  enforce: EnforceRule[];
+  passwordRules: PasswordRule[];
+  dataProtection: DataProtectionRule[];
+  apiSecurity: APISecurityRule[];
+}
