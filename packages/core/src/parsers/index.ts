@@ -7,4 +7,5 @@ export { DMLParser } from './dml-parser.js';
 export { AUTHParser } from './auth-parser.js';
 export { VALIDATIONParser } from './validation-parser.js';
 export { APIParser } from './api-parser.js';
+export { MONITORParser } from './monitor-parser.js';
 export { ParseError } from './ddl-parser.js';

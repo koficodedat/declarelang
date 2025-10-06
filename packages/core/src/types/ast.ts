@@ -688,3 +688,143 @@ export interface APIFile extends BaseNode {
   compression?: ResponseCompression;
   sizeLimits?: RequestSizeLimits;
 }
+
+/**
+ * MONITOR (Monitoring Configuration) Types
+ */
+
+/**
+ * Metric types for tracking
+ */
+export enum MetricType {
+  REQUEST_COUNT = 'request_count',
+  RESPONSE_TIME = 'response_time',
+  ERROR_RATE = 'error_rate',
+  STATUS_CODES = 'status_codes',
+  CREATE_COUNT = 'create_count',
+  UPDATE_COUNT = 'update_count',
+  DELETE_COUNT = 'delete_count',
+  READ_COUNT = 'read_count',
+  CUSTOM = 'custom', // For any other metric like "view count total"
+}
+
+/**
+ * Track scope types
+ */
+export type TrackScope = { type: 'all_endpoints' } | { type: 'model'; modelName: string };
+
+/**
+ * Metric item to track
+ */
+export interface MetricItem extends BaseNode {
+  name: string; // normalized name
+  originalName: string; // as written
+  metricType: MetricType;
+}
+
+/**
+ * Track definition
+ */
+export interface TrackDefinition extends BaseNode {
+  scope: TrackScope;
+  metrics: MetricItem[];
+}
+
+/**
+ * Alert comparison operators
+ */
+export enum AlertComparison {
+  EXCEEDS = 'exceeds',
+  IS_ABOVE = 'is_above',
+  IS_BELOW = 'is_below',
+  BELOW = 'below',
+  EQUALS = 'equals',
+  REACHED = 'reached', // For "threshold reached"
+}
+
+/**
+ * Threshold units
+ */
+export enum ThresholdUnit {
+  PERCENT = 'percent',
+  MILLISECONDS = 'milliseconds',
+  SECONDS = 'seconds',
+  REQUESTS = 'requests',
+  ERRORS = 'errors',
+  PER_SECOND = 'per_second',
+  PER_MINUTE = 'per_minute',
+  PER_HOUR = 'per_hour',
+  PER_DAY = 'per_day',
+  COUNT = 'count', // Raw number
+  CUSTOM = 'custom', // Custom units
+}
+
+/**
+ * Time window for alerts
+ */
+export interface TimeWindow extends BaseNode {
+  value: number;
+  unit: string; // e.g., "minute", "hour", "day"
+}
+
+/**
+ * Alert condition
+ */
+export interface AlertCondition extends BaseNode {
+  metric: string;
+  comparison: AlertComparison;
+  threshold: number;
+  thresholdUnit?: ThresholdUnit;
+  timeWindow?: TimeWindow;
+}
+
+/**
+ * Alert definition
+ */
+export interface AlertDefinition extends BaseNode {
+  modelName?: string; // Optional model name for model-specific alerts
+  conditions: AlertCondition[];
+}
+
+/**
+ * Monitor config item
+ */
+export interface MonitorConfigItem extends BaseNode {
+  name: string; // e.g., "database query time"
+  originalName: string;
+}
+
+/**
+ * Monitor configuration
+ */
+export interface MonitorConfig extends BaseNode {
+  items: MonitorConfigItem[];
+  slowQueryThreshold?: number; // in milliseconds
+  connectionPoolAlert?: number; // percentage
+  memoryAlert?: number; // percentage
+}
+
+/**
+ * Dashboard metric
+ */
+export interface DashboardMetric extends BaseNode {
+  name: string;
+  originalName: string;
+}
+
+/**
+ * Dashboard definition
+ */
+export interface DashboardDefinition extends BaseNode {
+  metrics: DashboardMetric[];
+}
+
+/**
+ * MONITOR file
+ */
+export interface MONITORFile extends BaseNode {
+  tracks: TrackDefinition[];
+  alerts: AlertDefinition[];
+  monitorConfig?: MonitorConfig;
+  dashboard?: DashboardDefinition;
+}

@@ -747,6 +747,17 @@ describe('Tokenizer', () => {
       );
     });
 
+    it('should tokenize percent sign for thresholds', () => {
+      const tokenizer = new Tokenizer('error rate exceeds 5%');
+      const tokens = tokenizer.tokenize();
+
+      expect(tokens).toContainEqual(
+        expect.objectContaining({ type: TokenType.IDENTIFIER, value: '%' })
+      );
+    });
+  });
+
+  describe('Unicode handling', () => {
     it('should handle comment with unicode', () => {
       const tokenizer = new Tokenizer('# 日本語 comment 👋');
       const tokens = tokenizer.tokenize();

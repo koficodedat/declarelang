@@ -16,6 +16,11 @@ export default defineConfig({
         '**/tests/**',
         '**/*.test.*',
         '**/*.spec.*',
+        '**/index.ts', // Re-export files
+        '**/coverage/**',
+        '**/lcov-report/**',
+        'docs/specs/**',
+        'packages/playground/src/**', // Frontend UI code
       ],
       thresholds: {
         lines: 80,

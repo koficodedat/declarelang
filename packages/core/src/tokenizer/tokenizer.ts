@@ -300,6 +300,9 @@ export class Tokenizer {
       case '=':
         this.advance();
         return this.makeToken(TokenType.IDENTIFIER, '=', start);
+      case '%':
+        this.advance();
+        return this.makeToken(TokenType.IDENTIFIER, '%', start);
     }
 
     // Identifiers and keywords

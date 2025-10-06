@@ -28,7 +28,7 @@ Track for Users:
 Alert when:
 - error rate exceeds 5 percent
 - response time exceeds 2000 milliseconds
-- failed login attempts exceed 10 in 5 minutes
+- failed login attempts exceeds 10 in 5 minutes
 - database connection pool exceeds 80 percent
 
 Alert for Posts:
@@ -36,19 +36,18 @@ Alert for Posts:
 - delete count exceeds 50 per hour
 
 Alert for Comments:
-- pending comments exceed 100
-- spam detection threshold reached
+- pending comments exceeds 100
+- spam detection score exceeds 0.8
 
 Monitor:
-- database query time
-- connection pool usage
-- memory usage
-- CPU usage
-- cache hit rate
-
-Slow query threshold: 500 milliseconds
-Connection pool alert: 80 percent
-Memory alert: 85 percent
+- database query time: tracked
+- connection pool usage: monitored
+- memory usage: monitored
+- CPU usage: monitored
+- cache hit rate: monitored
+- slow query threshold: 500 milliseconds
+- connection pool alert: 80 percent
+- memory alert: 85 percent
 
 Dashboard metrics:
 - total users
