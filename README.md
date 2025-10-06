@@ -131,7 +131,7 @@ declarelang dev --auto-migrate
 
 - Hot reload in development
 - Helpful error messages
-- Interactive playground
+- [Interactive playground](./packages/playground) (v0.1.0 stub, full features in v1.0.0)
 - Comprehensive documentation
 
 ---
@@ -226,12 +226,13 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
 
 ## Packages
 
-| Package                                          | Version                                                      | Description       |
-| ------------------------------------------------ | ------------------------------------------------------------ | ----------------- |
-| [@declarelang/core](./packages/core)             | ![npm](https://img.shields.io/npm/v/@declarelang/core)       | Parser & AST      |
-| [@declarelang/generators](./packages/generators) | ![npm](https://img.shields.io/npm/v/@declarelang/generators) | Code generators   |
-| [@declarelang/cli](./packages/cli)               | ![npm](https://img.shields.io/npm/v/@declarelang/cli)        | CLI tool          |
-| [@declarelang/runtime](./packages/runtime)       | ![npm](https://img.shields.io/npm/v/@declarelang/runtime)    | Runtime utilities |
+| Package                                          | Version                                                      | Description                |
+| ------------------------------------------------ | ------------------------------------------------------------ | -------------------------- |
+| [@declarelang/core](./packages/core)             | ![npm](https://img.shields.io/npm/v/@declarelang/core)       | Parser & AST               |
+| [@declarelang/generators](./packages/generators) | ![npm](https://img.shields.io/npm/v/@declarelang/generators) | Code generators            |
+| [@declarelang/cli](./packages/cli)               | ![npm](https://img.shields.io/npm/v/@declarelang/cli)        | CLI tool                   |
+| [@declarelang/runtime](./packages/runtime)       | ![npm](https://img.shields.io/npm/v/@declarelang/runtime)    | Runtime utilities          |
+| [@declarelang/playground](./packages/playground) | Private                                                      | Interactive DSL playground |
 
 ---
 
