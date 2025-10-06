@@ -5,7 +5,7 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-postgres"],
       "env": {
-        "POSTGRES_CONNECTION_STRING": "postgresql://localhost/declarelang_dev"
+        "POSTGRES_CONNECTION_STRING": "${POSTGRES_CONNECTION_STRING}"
       },
       "description": "PostgreSQL MCP server for testing generated schemas"
     },
@@ -13,9 +13,27 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-filesystem"],
       "env": {
-        "ALLOWED_DIRECTORIES": "/Users/kofi/_/declarelang"
+        "ALLOWED_DIRECTORIES": "${ALLOWED_DIRECTORIES}"
       },
       "description": "Enhanced file system operations"
+    },
+    "git": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git"],
+      "description": "Advanced Git repository operations and analysis"
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "description": "GitHub API for issues, PRs, and releases"
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "Persistent context across Claude Code sessions"
     }
   },
   "globalShortcuts": {

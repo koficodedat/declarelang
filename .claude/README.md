@@ -13,39 +13,17 @@ This directory contains Claude Code configuration for the DeclareLang project.
 
 ## MCP Servers
 
-Configure MCP servers in your Claude Code settings:
+**Setup Required**: See [SETUP.md](./SETUP.md) for complete MCP server configuration.
 
-### PostgreSQL Server
+Configured servers:
 
-For testing generated database schemas:
+- **postgres** - Test generated SQL schemas (requires `declarelang_dev` database)
+- **filesystem** - Enhanced file operations
+- **git** - Advanced Git repository operations
+- **github** - GitHub API access (requires `GITHUB_TOKEN` env variable)
+- **memory** - Persistent context across sessions
 
-```json
-{
-  "postgres": {
-    "command": "npx",
-    "args": ["-y", "@modelcontextprotocol/server-postgres"],
-    "env": {
-      "POSTGRES_CONNECTION_STRING": "postgresql://localhost/declarelang_dev"
-    }
-  }
-}
-```
-
-### Filesystem Server
-
-Enhanced file operations:
-
-```json
-{
-  "filesystem": {
-    "command": "npx",
-    "args": ["-y", "@modelcontextprotocol/server-filesystem"],
-    "env": {
-      "ALLOWED_DIRECTORIES": "/Users/kofi/_/declarelang"
-    }
-  }
-}
-```
+All configuration is in `mcp-config.json`. Sensitive tokens use environment variables.
 
 ## Hooks
 
