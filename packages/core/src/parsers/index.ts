@@ -2,4 +2,6 @@
  * Parser exports for DeclareLang DSL
  */
 
-export * from './ddl-parser.js';
+export { DDLParser } from './ddl-parser.js';
+export { DMLParser } from './dml-parser.js';
+export { ParseError } from './ddl-parser.js';
