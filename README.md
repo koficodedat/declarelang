@@ -280,7 +280,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
 
 ## License
 
-MIT © [Your Name](https://github.com/yourusername)
+MIT © [Kofi Nedjoh](https://github.com/koficodedat)
 
 ---
 

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://github.com/anthropics/claude-code/blob/main/mcp-config-schema.json",
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "env": {
+        "POSTGRES_CONNECTION_STRING": "postgresql://localhost/declarelang_dev"
+      },
+      "description": "PostgreSQL MCP server for testing generated schemas"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem"],
+      "env": {
+        "ALLOWED_DIRECTORIES": "/Users/kofi/_/declarelang"
+      },
+      "description": "Enhanced file system operations"
+    }
+  },
+  "globalShortcuts": {
+    "testParser": "/test-parser",
+    "validate": "/validate-dsl",
+    "coverage": "/coverage"
+  }
+}
