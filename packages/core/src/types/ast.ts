@@ -828,3 +828,109 @@ export interface MONITORFile extends BaseNode {
   monitorConfig?: MonitorConfig;
   dashboard?: DashboardDefinition;
 }
+
+/**
+ * LOG.DSL Types
+ */
+
+/**
+ * Log scope - what entity to log for
+ */
+export interface LogScope extends BaseNode {
+  type: 'all_mutations' | 'model';
+  modelName?: ModelName; // Only for model scope
+}
+
+/**
+ * Detail specification for logging
+ */
+export interface LogDetail extends BaseNode {
+  type: 'full_data' | 'changed_fields_only' | 'specific_fields';
+  fields?: string[]; // For specific_fields type
+}
+
+/**
+ * Individual log item
+ */
+export interface LogItem extends BaseNode {
+  type: 'field' | 'action_with_detail';
+  field?: string; // For field type
+  action?: string; // For action_with_detail type
+  detail?: LogDetail; // For action_with_detail type
+}
+
+/**
+ * Log definition section
+ */
+export interface LogDefinition extends BaseNode {
+  scope: LogScope;
+  items: LogItem[];
+}
+
+/**
+ * Audit item types
+ */
+export type AuditItemType = 'who_action' | 'when_event' | 'generic';
+
+/**
+ * Individual audit item
+ */
+export interface AuditItem extends BaseNode {
+  type: AuditItemType;
+  action?: string; // For who_action type (e.g., "created", "updated")
+  event?: string; // For when_event type (e.g., "published")
+  field?: string; // For generic type (e.g., "password changes")
+}
+
+/**
+ * Audit definition section
+ */
+export interface AuditDefinition extends BaseNode {
+  modelName: ModelName;
+  items: AuditItem[];
+}
+
+/**
+ * Log levels
+ */
+export enum LogLevel {
+  DEBUG = 'debug',
+  INFO = 'info',
+  WARNING = 'warning',
+  ERROR = 'error',
+}
+
+/**
+ * Log level condition
+ */
+export interface LogLevelCondition extends BaseNode {
+  description: string;
+  metric?: string; // For conditions like "slow queries over 500 milliseconds"
+  threshold?: number;
+  unit?: ThresholdUnit;
+}
+
+/**
+ * Log level definition section
+ */
+export interface LogLevelDefinition extends BaseNode {
+  level: LogLevel;
+  conditions: LogLevelCondition[];
+}
+
+/**
+ * Exclude definition section
+ */
+export interface ExcludeDefinition extends BaseNode {
+  items: string[]; // List of fields/data to exclude
+}
+
+/**
+ * LOG file
+ */
+export interface LOGFile extends BaseNode {
+  logs: LogDefinition[];
+  audits: AuditDefinition[];
+  levels: LogLevelDefinition[];
+  exclude?: ExcludeDefinition;
+}

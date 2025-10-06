@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /**
  * DML Parser Tests
  * Based on DSL Grammar Specification v0.1.0

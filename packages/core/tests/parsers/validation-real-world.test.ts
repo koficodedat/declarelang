@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /**
  * Real-world VALIDATION Parser Tests
  * Tests parsing of actual blog example validation.dsl file

@@ -4,6 +4,8 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
+    pool: 'forks', // Recommended for handling hanging processes
+    isolate: false, // Better performance for tests without side effects
     include: ['**/*.{test,spec}.{ts,tsx}'],
     exclude: ['**/node_modules/**', '**/dist/**', '**/.turbo/**'],
     coverage: {

@@ -115,6 +115,11 @@ const KEYWORDS: Record<string, TokenType> = {
   changed: TokenType.CHANGED,
   fields: TokenType.FIELDS,
   only: TokenType.ONLY,
+  mutations: TokenType.MUTATIONS,
+  debug: TokenType.DEBUG,
+  info: TokenType.INFO,
+  warning: TokenType.WARNING,
+  error: TokenType.ERROR,
 
   // Seeding
   seed: TokenType.SEED,

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /**
  * VALIDATION Parser Tests
  * Comprehensive test coverage for VALIDATION.DSL parser

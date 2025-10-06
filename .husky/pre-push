@@ -1,8 +1,8 @@
 # Run typechecking
 pnpm typecheck
 
-# Run vitest in run mode
-pnpm vitest run 2>&1 | tee /tmp/vitest_output
+# Run tests in run mode (not watch mode)
+pnpm test 2>&1 | tee /tmp/vitest_output
 EXIT_CODE=${PIPESTATUS[0]}
 
 # If exit code is non-zero but the output contains "No test files found", treat as success

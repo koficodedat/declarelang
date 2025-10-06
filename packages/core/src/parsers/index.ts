@@ -8,4 +8,5 @@ export { AUTHParser } from './auth-parser.js';
 export { VALIDATIONParser } from './validation-parser.js';
 export { APIParser } from './api-parser.js';
 export { MONITORParser } from './monitor-parser.js';
+export { LOGParser } from './log-parser.js';
 export { ParseError } from './ddl-parser.js';

@@ -3,8 +3,6 @@
  * Tests based on DSL Grammar Specification v0.1.0
  */
 
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import { describe, it, expect } from 'vitest';
 import { Tokenizer } from '../../src/tokenizer/tokenizer.js';
 import { TokenType, TokenizerError } from '../../src/types/token.js';

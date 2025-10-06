@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { describe, it, expect } from 'vitest';
 import { Tokenizer } from '../../src/tokenizer/tokenizer.js';
 import { MONITORParser } from '../../src/parsers/monitor-parser.js';

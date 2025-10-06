@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /**
  * API Parser Tests
  * Comprehensive test coverage for API.DSL parser

@@ -35,5 +35,11 @@ export default [
       '@typescript-eslint/no-non-null-assertion': 'warn',
     },
   },
+  {
+    files: ['**/*.test.ts', '**/*.spec.ts'],
+    rules: {
+      '@typescript-eslint/no-non-null-assertion': 'off',
+    },
+  },
   prettier,
 ];

@@ -110,6 +110,11 @@ export enum TokenType {
   CHANGED = 'CHANGED',
   FIELDS = 'FIELDS',
   ONLY = 'ONLY',
+  MUTATIONS = 'MUTATIONS',
+  DEBUG = 'DEBUG',
+  INFO = 'INFO',
+  WARNING = 'WARNING',
+  ERROR = 'ERROR',
 
   // Keywords - Seeding
   SEED = 'SEED',

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /**
  * AUTH Parser Tests
  * Comprehensive test coverage for AUTH.DSL parser
