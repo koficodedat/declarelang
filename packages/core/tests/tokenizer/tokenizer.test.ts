@@ -717,6 +717,35 @@ describe('Tokenizer', () => {
       expect(tokens[0]!.type).toBe(TokenType.COMMENT);
       expect(tokens[0]!.value).toContain('@#$%^&*()');
     });
+  });
+
+  describe('Special characters for API configuration', () => {
+    it('should tokenize forward slash for URLs', () => {
+      const tokenizer = new Tokenizer('https://example.com/path');
+      const tokens = tokenizer.tokenize();
+
+      expect(tokens).toContainEqual(
+        expect.objectContaining({ type: TokenType.IDENTIFIER, value: '/' })
+      );
+    });
+
+    it('should tokenize semicolon for header values', () => {
+      const tokenizer = new Tokenizer('max-age=31536000; includeSubDomains');
+      const tokens = tokenizer.tokenize();
+
+      expect(tokens).toContainEqual(
+        expect.objectContaining({ type: TokenType.IDENTIFIER, value: ';' })
+      );
+    });
+
+    it('should tokenize equals sign for header values', () => {
+      const tokenizer = new Tokenizer('max-age=31536000');
+      const tokens = tokenizer.tokenize();
+
+      expect(tokens).toContainEqual(
+        expect.objectContaining({ type: TokenType.IDENTIFIER, value: '=' })
+      );
+    });
 
     it('should handle comment with unicode', () => {
       const tokenizer = new Tokenizer('# 日本語 comment 👋');

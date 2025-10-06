@@ -55,23 +55,23 @@ Query parameters for Posts:
 - published as boolean
 - user id as number
 - category id as number
-- created at range
-- title contains text
-- content contains text
+- created at as date range
+- title as text contains
+- content as text contains
 
 Query parameters for Comments:
 - is approved as boolean
 - post id as number
 - user id as number
-- created at range
-- content contains text
+- created at as date range
+- content as text contains
 
 Query parameters for Users:
 - role as text
 - is active as boolean
-- created at range
-- email contains text
-- username contains text
+- created at as date range
+- email as text contains
+- username as text contains
 
 API versioning:
 - version format: v1
