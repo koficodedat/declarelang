@@ -4,4 +4,5 @@
 
 export { DDLParser } from './ddl-parser.js';
 export { DMLParser } from './dml-parser.js';
+export { AUTHParser } from './auth-parser.js';
 export { ParseError } from './ddl-parser.js';

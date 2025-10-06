@@ -299,3 +299,113 @@ export function isMutationSection(section: DMLSection): section is MutationSecti
 export function isComputedSection(section: DMLSection): section is ComputedSection {
   return 'computed' in section;
 }
+
+/**
+ * AUTH (Authorization) Types
+ */
+
+/**
+ * Role definition
+ */
+export interface RoleDefinition extends BaseNode {
+  name: string; // normalized role name
+  originalName: string; // as written
+}
+
+/**
+ * Subject types in permissions
+ */
+export enum SubjectType {
+  ANYONE = 'anyone',
+  AUTHENTICATED_USERS = 'authenticated_users',
+  USERS = 'users',
+  ROLE = 'role',
+}
+
+/**
+ * Permission subject
+ */
+export type PermissionSubject =
+  | { type: SubjectType.ANYONE }
+  | { type: SubjectType.AUTHENTICATED_USERS }
+  | { type: SubjectType.USERS }
+  | { type: SubjectType.ROLE; roleName: string };
+
+/**
+ * CRUD actions
+ */
+export enum CRUDAction {
+  CREATE = 'create',
+  READ = 'read',
+  EDIT = 'edit',
+  UPDATE = 'update',
+  DELETE = 'delete',
+}
+
+/**
+ * Target specification for permissions
+ */
+export enum TargetModifier {
+  ANY = 'any',
+  OWN = 'own',
+  NONE = 'none',
+}
+
+export interface TargetSpec extends BaseNode {
+  modifier: TargetModifier;
+  modelName: string; // singular form
+}
+
+/**
+ * Permission rule
+ */
+export interface PermissionRule extends BaseNode {
+  subject: PermissionSubject;
+  action: CRUDAction;
+  target: TargetSpec;
+  condition?: WhereClause; // reuse from DML
+}
+
+/**
+ * Rules for a model
+ */
+export interface ModelRules extends BaseNode {
+  modelName: string; // singular form
+  permissions: PermissionRule[];
+}
+
+/**
+ * Field-level actions
+ */
+export enum FieldAction {
+  EDIT = 'edit',
+  READ = 'read',
+  SET = 'set',
+}
+
+/**
+ * Field permission (can or cannot)
+ */
+export interface FieldPermission extends BaseNode {
+  subject: PermissionSubject;
+  action: FieldAction;
+  fieldName: string; // normalized
+  allowed: boolean; // true for "can", false for "cannot"
+}
+
+/**
+ * Field rules for a model
+ */
+export interface FieldRules extends BaseNode {
+  modelName: string; // singular form
+  permissions: FieldPermission[];
+}
+
+/**
+ * AUTH file
+ */
+export interface AUTHFile extends BaseNode {
+  roles: RoleDefinition[];
+  modelRules: ModelRules[];
+  fieldRules: FieldRules[];
+}
