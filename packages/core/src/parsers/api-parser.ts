@@ -92,10 +92,16 @@ export class APIParser {
           responseEnvelope = this.parseResponseEnvelopeSection();
         } else if (next && next.value.toLowerCase() === 'compression') {
           compression = this.parseResponseCompressionSection();
+        } else {
+          // Unknown "response" variant, skip it
+          this.advance();
         }
       } else if (token.type === TokenType.IDENTIFIER && token.value.toLowerCase() === 'success') {
         successResponse = this.parseSuccessResponseSection();
-      } else if (token.type === TokenType.IDENTIFIER && token.value.toLowerCase() === 'error') {
+      } else if (
+        (token.type === TokenType.IDENTIFIER && token.value.toLowerCase() === 'error') ||
+        token.type === TokenType.ERROR
+      ) {
         errorResponse = this.parseErrorResponseSection();
       } else if (token.type === TokenType.PAGINATION) {
         pagination.push(...this.parsePaginationSection());
