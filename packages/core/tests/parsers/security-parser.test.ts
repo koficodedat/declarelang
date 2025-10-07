@@ -31,13 +31,13 @@ Constraints:
       const result = parseSecurity(input);
 
       expect(result.constraints).toHaveLength(3);
-      expect(result.constraints[0].description).toBe(
+      expect(result.constraints[0]!.description).toBe(
         'all password fields must be hashed with bcrypt'
       );
-      expect(result.constraints[1].description).toBe(
+      expect(result.constraints[1]!.description).toBe(
         'all queries must use parameterized statements'
       );
-      expect(result.constraints[2].description).toBe('all timestamps must be UTC');
+      expect(result.constraints[2]!.description).toBe('all timestamps must be UTC');
     });
 
     it('should parse constraints with minimum rounds', () => {
@@ -49,7 +49,7 @@ Constraints:
       const result = parseSecurity(input);
 
       expect(result.constraints).toHaveLength(1);
-      expect(result.constraints[0].description).toContain('minimum 12 rounds');
+      expect(result.constraints[0]!.description).toContain('minimum 12 rounds');
     });
 
     it('should parse constraints with indexes', () => {
@@ -61,7 +61,7 @@ Constraints:
       const result = parseSecurity(input);
 
       expect(result.constraints).toHaveLength(1);
-      expect(result.constraints[0].description).toContain('have indexes');
+      expect(result.constraints[0]!.description).toContain('have indexes');
     });
 
     it('should parse constraints with sanitization', () => {
@@ -73,7 +73,7 @@ Constraints:
       const result = parseSecurity(input);
 
       expect(result.constraints).toHaveLength(1);
-      expect(result.constraints[0].description).toContain('sanitized');
+      expect(result.constraints[0]!.description).toContain('sanitized');
     });
 
     it('should parse constraints with rate limiting', () => {
@@ -85,7 +85,7 @@ Constraints:
       const result = parseSecurity(input);
 
       expect(result.constraints).toHaveLength(1);
-      expect(result.constraints[0].description).toContain('rate limiting');
+      expect(result.constraints[0]!.description).toContain('rate limiting');
     });
 
     it('should parse constraints with soft deletes', () => {
@@ -97,8 +97,8 @@ Constraints:
       const result = parseSecurity(input);
 
       expect(result.constraints).toHaveLength(1);
-      expect(result.constraints[0].description).toContain('soft deletes');
-      expect(result.constraints[0].description).toContain('Posts and Comments');
+      expect(result.constraints[0]!.description).toContain('soft deletes');
+      expect(result.constraints[0]!.description).toContain('Posts and Comments');
     });
   });
 
@@ -115,10 +115,10 @@ Enforce:
       const result = parseSecurity(input);
 
       expect(result.enforce).toHaveLength(4);
-      expect(result.enforce[0].description).toBe('no raw SQL in generated code');
-      expect(result.enforce[1].description).toBe('no eval or dynamic code execution');
-      expect(result.enforce[2].description).toBe('no credentials in logs');
-      expect(result.enforce[3].description).toBe('no sensitive data in error responses');
+      expect(result.enforce[0]!.description).toBe('no raw SQL in generated code');
+      expect(result.enforce[1]!.description).toBe('no eval or dynamic code execution');
+      expect(result.enforce[2]!.description).toBe('no credentials in logs');
+      expect(result.enforce[3]!.description).toBe('no sensitive data in error responses');
     });
 
     it('should parse enforcement requirements', () => {
@@ -132,9 +132,9 @@ Enforce:
       const result = parseSecurity(input);
 
       expect(result.enforce).toHaveLength(3);
-      expect(result.enforce[0].description).toContain('JWT tokens must expire');
-      expect(result.enforce[1].description).toContain('HttpOnly and Secure');
-      expect(result.enforce[2].description).toContain('explicitly configured');
+      expect(result.enforce[0]!.description).toContain('JWT tokens must expire');
+      expect(result.enforce[1]!.description).toContain('HttpOnly and Secure');
+      expect(result.enforce[2]!.description).toContain('explicitly configured');
     });
   });
 
@@ -151,13 +151,13 @@ Password Rules:
       const result = parseSecurity(input);
 
       expect(result.passwordRules).toHaveLength(4);
-      expect(result.passwordRules[0].description).toBe('password must not be logged');
-      expect(result.passwordRules[0].field).toBe('password');
-      expect(result.passwordRules[0].requirement).toContain('not be logged');
+      expect(result.passwordRules[0]!.description).toBe('password must not be logged');
+      expect(result.passwordRules[0]!.field).toBe('password');
+      expect(result.passwordRules[0]!.requirement).toContain('not be logged');
 
-      expect(result.passwordRules[2].description).toContain('password reset tokens');
-      expect(result.passwordRules[2].field).toBe('password reset tokens');
-      expect(result.passwordRules[2].requirement).toContain('expire within 1 hour');
+      expect(result.passwordRules[2]!.description).toContain('password reset tokens');
+      expect(result.passwordRules[2]!.field).toBe('password reset tokens');
+      expect(result.passwordRules[2]!.requirement).toContain('expire within 1 hour');
     });
 
     it('should parse password not logged rule', () => {
@@ -169,8 +169,8 @@ Password Rules:
       const result = parseSecurity(input);
 
       expect(result.passwordRules).toHaveLength(1);
-      expect(result.passwordRules[0].field).toBe('password');
-      expect(result.passwordRules[0].requirement).toContain('not be logged');
+      expect(result.passwordRules[0]!.field).toBe('password');
+      expect(result.passwordRules[0]!.requirement).toContain('not be logged');
     });
 
     it('should parse password reset token expiry', () => {
@@ -182,8 +182,8 @@ Password Rules:
       const result = parseSecurity(input);
 
       expect(result.passwordRules).toHaveLength(1);
-      expect(result.passwordRules[0].field).toBe('password reset tokens');
-      expect(result.passwordRules[0].requirement).toContain('expire within 1 hour');
+      expect(result.passwordRules[0]!.field).toBe('password reset tokens');
+      expect(result.passwordRules[0]!.requirement).toContain('expire within 1 hour');
     });
   });
 
@@ -199,15 +199,15 @@ Data Protection:
       const result = parseSecurity(input);
 
       expect(result.dataProtection).toHaveLength(3);
-      expect(result.dataProtection[0].description).toBe('user email must be unique and validated');
-      expect(result.dataProtection[0].subject).toBe('user email');
-      expect(result.dataProtection[0].requirement).toContain('unique and validated');
+      expect(result.dataProtection[0]!.description).toBe('user email must be unique and validated');
+      expect(result.dataProtection[0]!.subject).toBe('user email');
+      expect(result.dataProtection[0]!.requirement).toContain('unique and validated');
 
-      expect(result.dataProtection[1].subject).toBe('user data');
-      expect(result.dataProtection[1].requirement).toContain('not be exposed');
+      expect(result.dataProtection[1]!.subject).toBe('user data');
+      expect(result.dataProtection[1]!.requirement).toContain('not be exposed');
 
-      expect(result.dataProtection[2].subject).toBe('session tokens');
-      expect(result.dataProtection[2].requirement).toContain('regenerated');
+      expect(result.dataProtection[2]!.subject).toBe('session tokens');
+      expect(result.dataProtection[2]!.requirement).toContain('regenerated');
     });
   });
 
@@ -225,18 +225,18 @@ API Security:
       const result = parseSecurity(input);
 
       expect(result.apiSecurity).toHaveLength(5);
-      expect(result.apiSecurity[0].description).toBe('all endpoints must validate content type');
-      expect(result.apiSecurity[0].scope).toBe('all endpoints');
-      expect(result.apiSecurity[0].requirement).toContain('validate content type');
+      expect(result.apiSecurity[0]!.description).toBe('all endpoints must validate content type');
+      expect(result.apiSecurity[0]!.scope).toBe('all endpoints');
+      expect(result.apiSecurity[0]!.requirement).toContain('validate content type');
 
-      expect(result.apiSecurity[1].scope).toBe('all responses');
-      expect(result.apiSecurity[1].requirement).toContain('not expose stack traces');
+      expect(result.apiSecurity[1]!.scope).toBe('all responses');
+      expect(result.apiSecurity[1]!.requirement).toContain('not expose stack traces');
 
-      expect(result.apiSecurity[2].scope).toBe('all file uploads');
-      expect(result.apiSecurity[2].requirement).toContain('validate file type and size');
+      expect(result.apiSecurity[2]!.scope).toBe('all file uploads');
+      expect(result.apiSecurity[2]!.requirement).toContain('validate file type and size');
 
-      expect(result.apiSecurity[3].description).toContain('SQL injection');
-      expect(result.apiSecurity[4].description).toContain('XSS protection');
+      expect(result.apiSecurity[3]!.description).toContain('SQL injection');
+      expect(result.apiSecurity[4]!.description).toContain('XSS protection');
     });
   });
 
@@ -416,7 +416,7 @@ Constraints:
       const result = parseSecurity(input);
 
       expect(result.constraints).toHaveLength(1);
-      expect(result.constraints[0].description).toContain('Posts and Comments and Articles');
+      expect(result.constraints[0]!.description).toContain('Posts and Comments and Articles');
     });
 
     it('should handle multi-word field names', () => {
@@ -429,8 +429,8 @@ Password Rules:
       const result = parseSecurity(input);
 
       expect(result.passwordRules).toHaveLength(2);
-      expect(result.passwordRules[0].field).toBe('password reset tokens');
-      expect(result.passwordRules[1].field).toBe('failed login attempts');
+      expect(result.passwordRules[0]!.field).toBe('password reset tokens');
+      expect(result.passwordRules[1]!.field).toBe('failed login attempts');
     });
   });
 
@@ -572,8 +572,8 @@ Constraints:
 
       const result = parseSecurity(input);
 
-      expect(result.constraints[0].start).toBeDefined();
-      expect(result.constraints[0].end).toBeDefined();
+      expect(result.constraints[0]!.start).toBeDefined();
+      expect(result.constraints[0]!.end).toBeDefined();
       expect(result.start).toBeDefined();
       expect(result.end).toBeDefined();
     });
