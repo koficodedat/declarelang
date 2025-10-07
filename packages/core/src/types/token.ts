@@ -119,6 +119,7 @@ export enum TokenType {
   // Keywords - Seeding
   SEED = 'SEED',
   RANDOM = 'RANDOM',
+  IN = 'IN',
 
   // Keywords - Security
   CONSTRAINTS = 'CONSTRAINTS',

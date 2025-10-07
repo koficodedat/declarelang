@@ -390,6 +390,9 @@ export class VALIDATIONParser {
 
     // Check if this looks like a format type by peeking ahead
     // If it starts with "unique", "in", or unknown keywords, throw error
+    if (token.type === TokenType.IN) {
+      throw new ParseError(`Unexpected keyword after "be": ${token.value}`, token.start);
+    }
     if (token.type === TokenType.IDENTIFIER) {
       const lowerValue = token.value.toLowerCase();
       if (lowerValue === 'in' || lowerValue === 'unique') {

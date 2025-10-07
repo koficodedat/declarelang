@@ -124,6 +124,7 @@ const KEYWORDS: Record<string, TokenType> = {
   // Seeding
   seed: TokenType.SEED,
   random: TokenType.RANDOM,
+  in: TokenType.IN,
 
   // Security
   constraints: TokenType.CONSTRAINTS,
@@ -403,16 +404,18 @@ export class Tokenizer {
   private readIdentifierOrKeyword(start: Position): Token {
     let value = '';
 
-    // Read word (letters, digits, underscores, hyphens)
+    // Read word (letters, digits, underscores, hyphens, @, !)
     while (
       !this.isAtEnd() &&
       (this.isLetter(this.peek()) ||
         this.isDigit(this.peek()) ||
         this.peek() === '_' ||
-        this.peek() === '-')
+        this.peek() === '-' ||
+        this.peek() === '@' ||
+        this.peek() === '!')
     ) {
       const char = this.advance();
-      // Normalize hyphens to underscores
+      // Normalize hyphens to underscores (but keep @ and !)
       value += char === '-' ? '_' : char;
     }
 

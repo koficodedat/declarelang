@@ -977,3 +977,46 @@ export interface SECURITYFile extends BaseNode {
   dataProtection: DataProtectionRule[];
   apiSecurity: APISecurityRule[];
 }
+
+/**
+ * SEED.DSL Types
+ */
+
+export interface AttributeAssignment extends BaseNode {
+  field: string; // e.g., "slug", "password", "role"
+  value: string | number | boolean; // e.g., "technology", "Admin123!", true
+}
+
+export interface ModelReference extends BaseNode {
+  value: string; // e.g., "john@blog.com", "Getting Started with TypeScript"
+  modelName: string; // e.g., "User", "Post", "Category"
+}
+
+export interface LiteralSeed extends BaseNode {
+  type: 'literal';
+  primaryValue?: string; // e.g., email, title (first value before "with")
+  attributes: AttributeAssignment[];
+  references: ModelReference[]; // for "for X User" or "in Y Category"
+}
+
+export interface RandomSeed extends BaseNode {
+  type: 'random';
+  count: number; // e.g., 5, 20, 100
+  modelName: string; // e.g., "Users", "Posts"
+  randomFields: string[]; // e.g., ["usernames", "emails", "titles"]
+  attributes: AttributeAssignment[]; // Fixed attributes like "role user"
+  references: ModelReference[]; // e.g., "for random active Users"
+  quantifier?: string; // e.g., "some", "most", "all"
+}
+
+export type SeedItem = LiteralSeed | RandomSeed;
+
+export interface SeedSection extends BaseNode {
+  modelName?: string; // e.g., "Users", "Posts" (for "Seed Users:")
+  environment?: string; // e.g., "development", "testing" (for "Seed for development:")
+  items: SeedItem[];
+}
+
+export interface SEEDFile extends BaseNode {
+  sections: SeedSection[];
+}
